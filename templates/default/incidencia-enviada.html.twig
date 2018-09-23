@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container-fluid">
+        <h1 class="text-center">Incidencia</h1>
+        <div class="jumbotron text-center alert alert-info">
+            <p>Hemos recibido tu incidencia correctamente.</p>
+            <p>Si fuera necesario nos pondremos en contacto contigo, muchas gracias.</p>
+        </div>
+        <div>
+            <div>
+                <a style="width: 150px" href="{{ path('orla-provisional') }}" role="button" class="btn btn-success center-block">Continuar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}

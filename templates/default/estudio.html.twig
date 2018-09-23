@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container-fluid text-center">
+        <h2>Estudio</h2>
+            <hr style="width: 100px; margin: 40px auto" class="half-rule">
+            <div class="row text-center">
+                <div class="col-sm-4"> <img alt="Imagen 1" src="{{ asset('img/fotoescuela_01.jpg') }}" class="img-responsive">
+                    <h3>Fin de Ciclo</h3>
+                    <p style="font-size: 16px; font-weight: 300; line-height: 1.4; color: #555;" ></p>
+                </div>
+                <div class="col-sm-4"> <img alt="Imagen 2" src="{{ asset('img/fotoescuela_02.jpg') }}" class="img-responsive">
+                    <h3>Individual</h3>
+                    <p style="font-size: 16px; font-weight: 300; line-height: 1.4; color: #555;" >.</p>
+                </div>
+                <div class="col-sm-4"> <img alt="Imagen 2" src="{{ asset('img/fotoescuela_04.jpg') }}" class="img-responsive">
+                    <h3>Navidades</h3>
+                    <p style="font-size: 16px; font-weight: 300; line-height: 1.4; color: #555;" ></p>
+                </div>
+            </div>
+            <hr style="width: 100px; margin: 40px auto" class="half-rule">
+        </div>
+    {% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+
+    {% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container-fluid">
+        <h1 class="text-center">CONTACTAR</h1>
+        <div class="jumbotron text-center alert alert-info">
+            <p>Hemos recibido tu consulta, te responderemos a la mayor brevedad al correo que has indicado.</p>
+            <p>Si fuera necesario nos pondremos en contacto contigo por teléfono, muchas gracias.</p>
+        </div>
+        <div>
+            <div>
+                <a style="width: 150px" href="{{ path('homepage') }}" role="button" class="btn btn-success center-block">Continuar</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}

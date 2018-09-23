@@ -1,0 +1,121 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="container container-index">
+        <h2 class="text-center">Quienes somos</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <p style="text-align: justify">APARTEFOTOGRAFÍA es una empresa joven y dinámica que entiende la
+                    fotografía como la forma de expresar e inmortalizar los momentos más
+                    importantes, para lo que contamos con materiales, equipos y proveedores de alta
+                    calidad, asegurándonos así el resultado óptimo que nuestros clientes esperan.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p style="text-align: justify">
+                    La actividad que APARTEFOTOGRAFÍA realiza comprende desde la fotografía
+                    académica y escolar hasta el reportaje social y publicitario.
+                    Nuestra idea nace de la inquietud por innovar y ofrecer una fotografía alternativa y
+                    diferente a lo ya existente.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p style="text-align: justify">
+                    Para desarrollar este proyecto colaboran informáticos, fotógrafos, asesores de
+                    imagen y psicopedagogos, que aportan todos sus conocimientos a esta
+                    apasionante aventura.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid container-opaque container-index">
+        <br/>
+        <h2 style="margin-top: 0px" class="text-center">Proveedores y Calidad</h2>
+        <div class="col-md-10 col-md-offset-1">
+            <p style="text-align: justify">Nuestros proveedores nos garantizan la máxima calidad en fotografía de
+                proceso químico, asegurando la durabilidad y una amplia variedad en elaboración
+                y manipulado de otros productos para foto-escuela y reportaje social.
+            </p>
+        </div>
+    </div>
+
+    <div class="container_shadow"></div>
+
+    <br/>
+    <div class="container container-index">
+        <h2 class="text-center">Nuestro equipo</h2>
+        {#<p class="text-center">Este es el equipo de fotógrafos e informáticos, al cual se suman en#}
+            {#numerosas ocasiones nuestros colaboradores ayudándonos con grupos#}
+            {#numerosos o en desplazamientos a diferentes provincias.#}
+        {#</p>#}
+        <div class="row" style="padding-bottom:  0px;">
+            <div style="margin-bottom: 40px;" class="col-md-4 text-center">
+                <img style="background-color: rgba(49,162,221, .8)" class="img-circle" src="img/avatar/avatar_004.png" alt="Generic placeholder image" height="147" width="147">
+                <h3 class="text-center">Andrés Pino</h3>
+                <p style="text-align: justify">Técnico Superior Especialista en imagen y sonido en la especialidad
+                    de Fotografía. Con una experiencia de 14 años en fotografía
+                    académica y de 19 años en reportajes sociales.
+                    Responsable de información, maquetación y fotografía.
+                </p>
+            </div>
+            <div style="margin-bottom: 40px;" class="col-md-4 text-center">
+                <img style="background-color: rgba(49,162,221, .8)" class="img-circle" src="img/avatar/avatar_003.png" alt="Generic placeholder image" height="147" width="147">
+                <h3 class="text-center">David Pino</h3>
+                <p style="text-align: justify">Profesional informático con más de 20 años de experiencia.
+                    Asesor de imagen en fotografía académica, operador de vídeo y
+                    responsable web.
+                </p>
+            </div>
+            <div style="margin-bottom: 40px;" class="col-md-4 text-center">
+                <img style="background-color: rgba(49,162,221, .8)" class="img-circle" src="img/avatar/avatar_002.png" alt="Generic placeholder image" height="147" width="147">
+                <h3 class="text-center">Ricardo Boyer</h3>
+                <p style="text-align: justify">Fotógrafo de reportaje social y foto-escuela, maquetador, encargado
+                    de diseño final y calidad de imagen.
+                </p>
+            </div>
+        </div>
+        <div class="row" style="padding-top:  10px;">
+            <div style="margin-bottom: 40px;" class="col-md-offset-2 col-md-4 text-center">
+                <img style="background-color: rgba(49,162,221, .8)" class="img-circle" src="img/avatar/avatar_001.png" alt="Generic placeholder image" height="147" width="147">
+                <h3 class="text-center">Cristina Martín</h3>
+                <p style="text-align: justify">
+                    Licenciada en Psicopedagogía por la Universidad de Sevilla.
+                    Responsable de foto-escuela, maquetación de reportaje social y
+                    fotografía.
+                </p>
+            </div>
+            <div style="margin-bottom: 40px;" class="col-md-4 text-center">
+                <img style="background-color: rgba(49,162,221, .8)" class="img-circle" src="img/avatar/avatar_007.png" alt="Generic placeholder image" height="147" width="147">
+                <h3 class="text-center">Jorge Díaz</h3>
+                <p style="text-align: justify">
+                    Fotógrafo social y académico, asesor de imagen, gestión de datos y
+                    retoque, editor de imagen.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container_shadow"></div>
+    <!-- / Container -->
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .container-opaque{
+            background-color: rgba(255,0,0, .7);
+            border-top: 1px solid #bb0000;
+            border-bottom: 1px solid #bb0000;
+        }
+        .container-index{
+            padding: 20px 10px;
+        }
+        .container-index>div{
+            padding-bottom: 40px;
+            padding-top: 40px;
+        }
+        .nav>li:hover{
+            background-color: rgba(0,0,0,.3);
+        }
+    </style>
+{% endblock %}

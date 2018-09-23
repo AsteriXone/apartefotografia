@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Apartefotografía{% endblock %}</title>
+        {#<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />#}
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {% block stylesheets %}
+        <style>
+            .shadow-panel {
+                background: url({{ asset('build/img/shadow-panel.png') }}) no-repeat top center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                height: 20px;
+                width: 100%;
+                z-index: 99;
+            }
+            #navegador {
+                background-color: #FA0405;
+            }
+        </style>
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('build/app.js') }}"></script>
+            {#<script src="{{ asset('build/jquery.color-2.1.2.min.js') }}"></script>#}
+            <script>
+                $(function () {
+                    // $(document).scroll(function() {
+                        // var y = $(this).scrollTop();
+                        // // console.log(y);
+                        // console.log("Atributo " + $('#img-logo').attr("class") + ".");
+                        //
+                        // if (y > 345) {
+                        //     // Muestra
+                        //     $('#img-logo').fadeIn();
+                        //     console.log("Entra atributo " + $('#img-logo').attr("class") + ".");
+                        // } else {
+                        //     // Oculta
+                        //     $('#img-logo').fadeOut();
+                        // }
+                        // console.log("Atributo befor " + $('#img-logo').attr("class") + ".");
+                        // console.log("");
+
+                    // });
+                    /* Scrolling */
+                    // var id     = "#ancla";
+                    // var offset = $(id).offset();
+                    //
+                    // $("html, body").animate({
+                    //     scrollTop: offset.top
+                    // }, 1000);
+                    /* Scrolling-end */
+
+                    // $("#navegador div a ").mouseenter(function () {
+                    //     $(this).animate({
+                    //         backgroundColor: "#FA0405"
+                    //     }, 200);
+                    //     $(this).css('box-shadow', "3px 3px rgba(0, 0, 0, .2)");
+                    //
+                    // }).mouseleave(function () {
+                    //     $(this).finish();
+                    //     $(this).css('box-shadow', "");
+                    //     $(this).css('background-color', "");
+                    // });
+
+                    $("#navegador div a ").mouseenter(function () {
+                        // $(this).animate({
+                        //     backgroundColor: "#333333"
+                        // }, 200);
+                        $(this).css('background-color', "#ffffff");
+                        $(this).css('box-shadow', "3px 3px rgba(0, 0, 0, .2)");
+                        $(this).css('color', '#000000');
+
+                    }).mouseleave(function () {
+                        // $(this).finish();
+                        $(this).css('box-shadow', "");
+                        $(this).css('background-color', "");
+                        $(this).css('color', '#ffffff');
+                    });
+
+
+                    //a) initialize paroller.js
+                    $('.my-paroller').paroller();
+
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>

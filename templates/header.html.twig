@@ -1,0 +1,107 @@
+<nav id="navegador" class="navbar sticky-top navbar-expand-lg navbar-light">
+    <!-- Image and text -->
+    {#<a id="logo-change" class="navbar-brand shadow-sm">#}
+        {#<img id="img-logo" src="{{ asset('build/img/logo.jpg') }}" height="40">#}
+    {#</a>#}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto pt-1 pb-1">
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="{{ path('orlas-index') }}">Orlas<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="#">Fotoescuela<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="#">Graduaciones<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="#">Estudio<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="#">Galerías<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="#">Quienes somos<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-fill">
+                <a class="nav-link" href="#">Contactar<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+    <span class="shadow-panel"></span>
+</nav>
+
+{#<nav class="menubar navbar navbar-inverse navbar-fixed-top">#}
+    {#<!--div class="container-fluid">#}
+        {#<img style="max-height: 50px" class="img-responsive center-block" src="img/logo.jpg"/>#}
+    {#</div-->#}
+    {#<div class="container-fluid">#}
+        {#<!-- Brand and toggle get grouped for better mobile display -->#}
+        {#<div class="navbar-header">#}
+            {#<span id="header_shadow"></span>#}
+            {#<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+                {#<span class="sr-only">Toggle navigation</span>#}
+                {#<span class="icon-bar"></span>#}
+                {#<span class="icon-bar"></span>#}
+                {#<span class="icon-bar"></span>#}
+            {#</button>#}
+            {#<a class="navbar-brand" href="{{ url('homepage') }}"> <img style="max-height: 50px" src="{{ asset('img/logo.jpg') }}"/></a>#}
+        {#</div>#}
+
+        {#<!-- Collect the nav links, forms, and other content for toggling -->#}
+        {#<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+            {#<ul class="nav navbar-nav">#}
+                {#{% if app.user %}#}
+                    {#<!-- Menú para usuarios logueados -->#}
+                    {#{% if is_granted('ROLE_ADMIN') %}#}
+                        {#<!-- ROLE_ADMIN -->#}
+                        {#<li><a href="#">Administración</a></li>#}
+                        {#<li><a href="#">Votaciones</a></li>#}
+                        {#<li><a href="{{ path('generar-citas') }}">Generar Citas</a></li>#}
+                        {#<li><a href="#">Correo masivo</a></li>#}
+                        {#<li><a href="{{ path('usuario_cita') }}">Citas</a></li>#}
+                        {#<!-- li><a href="#"></a></li>#}
+                        {#<li><a href="#"></a></li -->#}
+                        {#{% elseif is_granted('ROLE_USER') %}#}
+                            {#<!-- ROLE_USER -->#}
+                            {#<li><a href="#">Muestras</a></li>#}
+                            {#<li><a href="#">Mi Pedido</a></li>#}
+                            {#<li><a href="#">Votar Orlas</a></li>#}
+                            {#<li><a href="#">Votar Profes</a></li>#}
+                            {#<li><a href="#">Pedir Cita</a></li>#}
+                            {#<li><a href="{{ path('incidencia') }}">Incidencia</a></li>#}
+                            {#<li><a href="#">Orla provisional</a></li>#}
+                            {#<li><a href="#">Contactar</a></li>#}
+                    {#{% endif %}#}
+                {#{% else %}#}
+                    {#<!-- Menú para usuarios por defecto -->#}
+                    {#<li><a href="#">Orlas</a></li>#}
+                    {#<li><a href="#">Fotoescuela</a></li>#}
+                    {#<li><a href="#">Graduaciones</a></li>#}
+                    {#<li><a href="#">Estudio</a></li>#}
+                    {#<li><a href="#">Galería</a></li>#}
+                    {#<li><a href="#">Quienes Somos</a></li>#}
+                    {#<li><a href="#">Contactar</a></li>#}
+                {#{% endif %}#}
+            {#</ul>#}
+            {#<ul class="nav navbar-nav navbar-right">#}
+                 {#<li>#}
+                     {#{% if app.user %}#}
+                         {#<a href="#">#}
+                             {#Cerrar Sesión#}
+                             {#<span class="glyphicon glyphicon-log-out"></span>#}
+                         {#</a>#}
+                     {#{% else %}#}
+                         {#<a href="#">#}
+                             {#Acceso#}
+                             {#<span class="glyphicon glyphicon-user"></span>#}
+                         {#</a>#}
+                     {#{% endif %}#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div><!-- /.navbar-collapse -->#}
+    {#</div><!-- /.container-fluid -->#}
+{#</nav>#}
