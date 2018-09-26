@@ -2,8 +2,6 @@
 // src/Entity/User.php
 namespace App\Entity;
 
-namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -24,20 +22,63 @@ class User implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=190, unique=true)
+     * @ORM\Column(name="email", type="string", length=190, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=190, unique=true)
+     * @ORM\Column(name="nombre", type="string", length=190, unique=true)
      * @Assert\NotBlank()
      */
     private $username;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="apellido1", type="string", length=190)
+     */
+    protected $ape_1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="apellido2", type="string", length=190)
+     */
+    protected $ape_2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=190)
+     */
+    protected $direccion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=190)
      * @Assert\NotBlank()
+     */
+    protected $telefono;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulacion", type="string", length=190)
+     */
+    protected $titulacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mencion", type="string", length=190)
+     */
+    protected $mencion;
+
+
+    /**
      * @Assert\Length(max=4096)
      */
     private $plainPassword;
@@ -55,31 +96,56 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_registro", type="datetime", unique=false, nullable=true)
+     */
+    protected $fecha_registro;
+
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
     }
 
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return (string) $this->getUsername()." ".$this->getApe1()." ".$this->getApe2();
+    }
+
     // other properties and methods
 
-    public function getEmail()
+    public function getOnlyDate(){
+        return $this->fecha_registro->format('d/m/Y');
+    }
+
+    public function getFullName(){
+        return (string) $this->getApe1()." ".$this->getApe2().", ".$this->getUsername();
+    }
+
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
-    public function getUsername()
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function setUsername($username)
+    public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
     }
 
     public function getPlainPassword()
@@ -92,14 +158,16 @@ class User implements UserInterface, \Serializable
         $this->plainPassword = $password;
     }
 
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword($password)
+    public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
     }
 
     public function getSalt()
@@ -109,7 +177,7 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
-    public function getRoles()
+    public function getRoles(): ?array
     {
         return $this->roles;
     }
@@ -155,5 +223,101 @@ class User implements UserInterface, \Serializable
             $this->email,
             $this->password
             ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getApe1(): ?string
+    {
+        return $this->ape_1;
+    }
+
+    public function setApe1(string $ape_1): self
+    {
+        $this->ape_1 = $ape_1;
+
+        return $this;
+    }
+
+    public function getApe2(): ?string
+    {
+        return $this->ape_2;
+    }
+
+    public function setApe2(string $ape_2): self
+    {
+        $this->ape_2 = $ape_2;
+
+        return $this;
+    }
+
+    public function getDireccion(): ?string
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion(string $direccion): self
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    public function getTelefono(): ?string
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(string $telefono): self
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getTitulacion(): ?string
+    {
+        return $this->titulacion;
+    }
+
+    public function setTitulacion(string $titulacion): self
+    {
+        $this->titulacion = $titulacion;
+
+        return $this;
+    }
+
+    public function getMencion(): ?string
+    {
+        return $this->mencion;
+    }
+
+    public function setMencion(string $mencion): self
+    {
+        $this->mencion = $mencion;
+
+        return $this;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getFechaRegistro(): ?\DateTimeInterface
+    {
+        return $this->fecha_registro;
+    }
+
+    public function setFechaRegistro(?\DateTimeInterface $fecha_registro): self
+    {
+        $this->fecha_registro = $fecha_registro;
+
+        return $this;
     }
 }

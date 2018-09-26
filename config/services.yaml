@@ -29,3 +29,41 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    admin.user:
+        class: App\Admin\UserAdmin
+        arguments: [~, App\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Usuario }
+        public: true
+
+    admin.universidad:
+            class: App\Admin\UniversidadAdmin
+            arguments: [~, App\Entity\Universidad,~ ]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Universidad }
+            public: true
+
+    admin.especialidad:
+            class: App\Admin\EspecialidadAdmin
+            arguments: [~, App\Entity\Especialidad, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Especialidad }
+            public: true
+
+    admin.grupo:
+            class: App\Admin\GruposAdmin
+            arguments: [~, App\Entity\Grupo, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Grupo }
+            public: true
+
+#    app.admin.grupos_usuarios:
+#        class: AppBundle\Admin\GruposUsuariosAdmin
+#        arguments: [~, AppBundle\Entity\GruposUsuarios, SonataAdminBundle:CRUD]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Usuarios por Grupo }
+#        public: true
+
+
+

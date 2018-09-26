@@ -28,7 +28,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/noadminno", name="NOadminNO")
      */
     public function adminAction()
     {
