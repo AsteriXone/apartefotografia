@@ -37,26 +37,41 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Usuario }
         public: true
 
+    admin.grupo-universidad:
+            class: App\Admin\GruposAdmin
+            arguments: [~, App\Entity\Grupo, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Universidades }
+            public: true
+
+    admin.grupo-colegio:
+            class: App\Admin\GruposColegioAdmin
+            arguments: [~, App\Entity\GrupoColegio, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Colegios }
+            public: true
+
     admin.universidad:
             class: App\Admin\UniversidadAdmin
             arguments: [~, App\Entity\Universidad,~ ]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Universidad }
+                - { name: sonata.admin, manager_type: orm, group: Misc, label: Universidad }
             public: true
 
     admin.especialidad:
             class: App\Admin\EspecialidadAdmin
             arguments: [~, App\Entity\Especialidad, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Especialidad }
+                - { name: sonata.admin, manager_type: orm, group: Misc, label: Especialidad }
             public: true
 
-    admin.grupo:
-            class: App\Admin\GruposAdmin
-            arguments: [~, App\Entity\Grupo, ~]
+    admin.colegio:
+            class: App\Admin\ColegioAdmin
+            arguments: [~, App\Entity\Colegio, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, group: Grupos, label: Grupo }
+                - { name: sonata.admin, manager_type: orm, group: Misc, label: Colegio }
             public: true
+
 
 #    app.admin.grupos_usuarios:
 #        class: AppBundle\Admin\GruposUsuariosAdmin

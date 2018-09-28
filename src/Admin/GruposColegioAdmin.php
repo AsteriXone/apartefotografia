@@ -8,7 +8,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Universidad;
+use App\Entity\Colegio;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -16,7 +16,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class GruposAdmin extends AbstractAdmin
+class GruposColegioAdmin extends AbstractAdmin
 {
     /**
      * @param DatagridMapper $datagridMapper
@@ -25,7 +25,7 @@ class GruposAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('id')
-            ->add('universidad')
+            ->add('colegio')
 //            ->add('especialidad')
             ->add('anio')
             ->add('codigoGrupo');
@@ -38,8 +38,7 @@ class GruposAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('id')
-            ->add('nombreGrupo', null, array('sortable'=>true, 'label' => 'Grupo Universidad'))
-//            ->add('especialidad')
+            ->add('colegio', null, array('sortable'=>true, 'label' => 'Grupo Colegio'))
             ->add('anio')
             ->add('codigoGrupo', null, array('editable' => true))
             ->add('isActive', null, array('label' => 'Activo', 'editable' => true))
@@ -63,12 +62,9 @@ class GruposAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Datos Grupo', ['class' => 'col-md-9'])
-//                ->add('universidad')
-                ->add('universidad', ModelType::class, [
-                'class' => Universidad::class
+                ->add('colegio', ModelType::class, [
+                'class' => Colegio::class
             ])
-                ->add('especialidad', ModelType::class)
-//                ->add('especialidad')
                 ->add('anio')
                 ->add('codigoGrupo')
             ->end()
@@ -88,8 +84,7 @@ class GruposAdmin extends AbstractAdmin
     {
         $showMapper
             ->with('Grupo', ['class' => 'col-md-9'])
-                ->add('nombreGrupo')
-            //                ->add('especialidad')
+                ->add('colegio')
                 ->add('anio')
                 ->add('codigoGrupo')
             ->end()

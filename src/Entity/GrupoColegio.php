@@ -9,11 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Grupo
  *
- * @ORM\Table(name="grupo")
+ * @ORM\Table(name="grupo_colegio")
  * @ORM\Entity
  */
-
-class Grupo
+class GrupoColegio
 {
     /**
      * @var int
@@ -74,87 +73,27 @@ class Grupo
     private $isComprasActive;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Universidad", inversedBy="grupos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Colegio", inversedBy="grupoColegios")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $universidad;
+    private $colegio;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Especialidad", inversedBy="grupos")
-     */
-    private $especialidad;
-
-
-//    /**
-//     * @ORM\ManyToOne(targetEntity="Universidad", inversedBy="grupo")
-//     */
-//    private $universidad;
-//
-//    /**
-//     * @ORM\ManyToOne(targetEntity="Especialidad", inversedBy="grupo")
-//     */
-//    private $especialidad;
-//
-//    /**
-//     * @ORM\OneToMany(targetEntity="GruposUsuarios", mappedBy="grupo")
-//     */
-//    private $grupos_usuarios;
-//
-//    /**
-//     * @ORM\OneToMany(targetEntity="GrupoMuestra", mappedBy="grupo")
-//     */
-//    private $gruposMuestras;
-//
-//    /**
-//     * @ORM\OneToMany(targetEntity="GrupoMuestraVotar", mappedBy="grupo")
-//     */
-//    private $gruposMuestrasVotar;
-//
-//    /**
-//     * @ORM\OneToMany(targetEntity="CuadranteGrupo", mappedBy="grupo")
-//     */
-//    private $cuadranteGrupo;
-//
-//    /**
-//     * @ORM\OneToMany(targetEntity="GrupoProfesor", mappedBy="grupo")
-//     */
-//    private $grupos_profesores;
- //    /**
-//     * One Grupo has Many UsuarioMuestra.
-//     * @ORM\OneToMany(targetEntity="UsuariosMuestras", mappedBy="grupo")
-//     */
-//    private $usuario_muestra;
-//
-//    /**
-//     * @ORM\OneToMany(targetEntity="ImageOrla", mappedBy="grupo", cascade={"persist", "remove"})
-//     */
-//    protected $imagenes;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="grupoUniversidad")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="grupoColegio")
      */
     private $users;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-//        $this->gruposMuestras = new ArrayCollection();
-//        $this->grupos_usuarios = new ArrayCollection();
-//        $this->cuadranteGrupo = new ArrayCollection();
-//        $this->grupos_profesores = new ArrayCollection();
-//        $this->imagenes = new ArrayCollection();
     }
 
     public function __toString()
     {
         // TODO: Implement __toString() method.
-//        return (string) $this->getUniversidad(). " - ".$this->getEspecialidad(). " (" . $this->getAnio().")";
-        return (string) $this->getUniversidad(). " - "."(" . $this->getAnio().")";
-
+        return (string) $this->getColegio();
     }
 
-    public function getNombreGrupo(){
-        return (string) $this->getUniversidad()->getNombre()." - ".$this->getEspecialidad()->getNombre();
-    }
 
     public function getId(): ?int
     {
@@ -245,27 +184,14 @@ class Grupo
         return $this;
     }
 
-    public function getUniversidad(): ?Universidad
+    public function getColegio(): ?Colegio
     {
-        return $this->universidad;
+        return $this->colegio;
     }
 
-    public function setUniversidad(?Universidad $universidad): self
+    public function setColegio(?Colegio $colegio): self
     {
-        $this->universidad = $universidad;
-
-        return $this;
-    }
-
-
-    public function getEspecialidad(): ?Especialidad
-    {
-        return $this->especialidad;
-    }
-
-    public function setEspecialidad(?Especialidad $especialidad): self
-    {
-        $this->especialidad = $especialidad;
+        $this->colegio = $colegio;
 
         return $this;
     }
@@ -282,7 +208,7 @@ class Grupo
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setGrupoUniversidad($this);
+            $user->setGrupo($this);
         }
 
         return $this;
@@ -293,8 +219,8 @@ class Grupo
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getGrupoUniversidad() === $this) {
-                $user->setGrupoUniversidad(null);
+            if ($user->getGrupo() === $this) {
+                $user->setGrupo(null);
             }
         }
 

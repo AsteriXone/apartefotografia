@@ -12,10 +12,26 @@
                 <!-- Menú para usuarios logueados -->
                 {% if is_granted('ROLE_ADMIN') %}
                 <!-- ROLE_ADMIN -->
-
+                    <!-- Menú para Administrador -->
+                    <li class="nav-item nav-fill">
+                        <a style="color: #ffffff" class="nav-link" href="{{ path('sonata_admin_redirect') }}">Administracion<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item nav-fill">
+                        <a style="color: #ffffff" class="nav-link" href="#">Votaciones<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item nav-fill">
+                        <a style="color: #ffffff" class="nav-link" href="#">Correo Masivo<span class="sr-only">(current)</span></a>
+                    </li>
                 {% elseif is_granted('ROLE_USER') %}
                 <!-- ROLE_USER -->
-
+                    <!-- Menú para usuarios registrados -->
+                    <li><a href="#">Muestras</a></li>
+                    <li><a href="#">Mi Pedido</a></li>
+                    <li><a href="#">Votar Orlas</a></li>
+                    <li><a href="#">Votar Profes</a></li>
+                    <li><a href="#">Pedir Cita</a></li>
+                    <li><a href="#">Orla provisional</a></li>
+                    <li><a href="#">Contactar</a></li>
                 {% endif %}
             {% else %}
                 <!-- Menú para usuarios por defecto -->

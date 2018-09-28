@@ -8,7 +8,7 @@
 
 namespace App\Admin;
 
-use App\Entity\Especialidad;
+use App\Entity\Colegio;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -16,14 +16,8 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class EspecialidadAdmin extends AbstractAdmin
+class ColegioAdmin extends AbstractAdmin
 {
-    public function toString($object)
-    {
-        return $object instanceof Especialidad
-            ? (string) $object->getNombre()
-            : 'Especialidad'; // shown in the breadcrumb on the create view
-    }
 
 //    protected $datagridValues = [
 //        // name of the ordered field (default = the model's id field, if any)

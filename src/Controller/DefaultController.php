@@ -27,6 +27,15 @@ class DefaultController extends AbstractController
         return $this->render('default/orlas-index.html.twig');
     }
 
+//    /**
+//     * @Route("/pruebas", name="pruebas")
+//     */
+//    public function pruebasAction(Request $request)
+//    {
+//        // replace this example code with whatever you need
+//        return $this->render('default/orlas-index.html.twig');
+//    }
+
     /**
      * @Route("/noadminno", name="NOadminNO")
      */
