@@ -16,6 +16,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
+use App\Entity\User;
+
 
 class DashboardController extends AbstractDashboardController
 {
@@ -58,10 +60,11 @@ class DashboardController extends AbstractDashboardController
         ;
     }
 
-    /* public function configureMenuItems(): iterable
+    public function configureMenuItems(): iterable
     {
-        //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-    } */
+        yield MenuItem::section('Usuarios');
+        yield MenuItem::linkToCrud('Usuarios', 'fa fa-users', User::class);
+    }
 
     public function configureActions(): Actions
     {
