@@ -1,0 +1,54 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block content_title %}
+    Administración
+{% endblock %}
+{% block main %}
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="text-center">Test col 6</h3>
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center">Test col 6</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Test</h3>
+            <ol>
+                {# {% for question in latestQuestions %} #}
+                    <li>
+                        <a href="#">Test</a>
+                        <br>- 24/06/2023
+                    </li>
+                    <li>
+                        <a href="#">Test</a>
+                        <br>- 24/06/2023
+                    </li>
+                    <li>
+                        <a href="#">Test</a>
+                        <br>- 24/06/2023
+                    </li>
+                {# {% endfor %} #}
+            </ol>
+        </div>
+        <div class="col-md-6">
+            <h3>Test</h3>
+            <ol>
+                {# {% for question in topVoted %} #}
+                    <li>
+                        <a href="#">Test</a> 10 votos
+                    </li>
+                    <li>
+                        <a href="#">Test</a> 10 votos
+                    </li>
+                    <li>
+                        <a href="#">Test</a> 10 votos
+                    </li>
+                    <li>
+                        <a href="#">Test</a> 10 votos
+                    </li>
+                {# {% endfor %} #}
+            </ol>
+        </div>
+    </div>
+{% endblock %}
