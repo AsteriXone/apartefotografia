@@ -74,7 +74,7 @@ class SecurityController extends AbstractController
             'remember_me_enabled' => true,
 
             // remember me name form field (default: '_remember_me')
-            'remember_me_parameter' => 'custom_remember_me_param',
+            'remember_me_parameter' => '_remember_me',
 
             // whether to check by default the "remember me" checkbox (default: false)
             'remember_me_checked' => true,
