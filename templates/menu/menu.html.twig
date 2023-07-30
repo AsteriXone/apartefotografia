@@ -1,0 +1,87 @@
+{# Bootstrap 5 sticky navbar #}
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('homepage') }}">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        {# <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li> #}
+      </ul>
+      {# <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> #}
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> {{ app.user }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-placement="top">
+            {% if is_granted('ROLE_ADMIN') %}
+              <li><a class="dropdown-item" href="{{ path('admin') }}"><i class="bi bi-shield-lock"></i> Administración</a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="{{ path('user_account') }}"><i class="bi bi-person-gear"></i> Mi cuenta</a></li>
+            {# <li><a class="dropdown-item" href="#">Another action</a></li> #}
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_logout') }}"><i class="bi bi-box-arrow-right"></i> Salir</a></li>
+          </ul>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_login') }}"><i class="bi bi-box-arrow-in-right"></i> Entrar</a>
+        </li>
+      {% endif %}
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+<span class="position-absolute trigger">
+    <!-- hidden trigger to apply 'stuck' styles -->
+</span>
+{# <script>
+    (new IntersectionObserver(function(e, o) {
+        if (e[0].intersectionRatio > 0) {
+            document.documentElement.removeAttribute('class');
+        } else {
+            document.documentElement.setAttribute('class', 'stuck');
+        };
+    })).observe(document.querySelector('.trigger'));
+</script> #}
+{# <style> 
+.sticky-top{
+    transition: all 0.25s ease-in;
+}
+.stuck .navbar.sticky-top {
+    background-color: #222 !important;
+}
+/* dropdow-menu animation background color */
+#navbarSupportedContent .dropdown-menu.show{
+    animation: fadeDown 0.25s ease-in;
+    transition: all 1s ease-in;
+}
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        
+    }
+}
+</style> #}

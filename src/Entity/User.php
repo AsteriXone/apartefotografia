@@ -65,7 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString(): string
     {
-        return (string) $this->name;
+        return (string) $this->name . ' ' . $this->surname_1;
     }
     /**
      * A visual identifier that represents this user.

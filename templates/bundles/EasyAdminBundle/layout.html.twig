@@ -1,0 +1,13 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+{% block header_logo %}
+    <a class="logo" title="{{ ea.dashboardTitle|striptags }}" href="{{ path(ea.dashboardRouteName) }}">
+        <span class="logo-custom">{{ ea.dashboardTitle|raw }}</span>
+        <span class="logo-compact"><i class="fas fa-home"></i></span>
+    </a>
+{% endblock header_logo %}
+
+{% block content_footer_wrapper %}
+    <section class="content-footer">
+        <p class="text-center">Made with <i class="bi bi-arrow-through-heart-fill" style="color: red"></i> by asteriXone © {{ 'now'|date('Y') }} <a href="https://asterixone.github.io" target="_blank">Rubén Rueda</a><br/>All Rights Reserved</p>
+    </section>
+{% endblock %}

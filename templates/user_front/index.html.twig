@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mi cuenta{% endblock %}
+
+{% block body %}
+    {# Bootstra fluid container #}
+    <div class="container-fluid wrap-content">
+        <div class="row">
+            <div class="col-12">
+                <h2 class=""><i class="bi bi-person-circle" style="color: var(--bs-cyan)"></i> {{ user }} {{ user.getSurname2 }}</h2>
+            </div>
+        </div>
+    </div>  
+
+
+
+    {# <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Surname_1</th>
+                <th>Surname_2</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>IsVerified</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.surname1 }}</td>
+                <td>{{ user.surname2 }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.address }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_user_front_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_front_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_front_new') }}">Create new</a> #}
+{% endblock %}

@@ -2,11 +2,12 @@
 {% block content_title %}
     Administración
 {% endblock %}
-{% block hidden %}
-{# {% block main %} #}
+{# {% block hidden %} #}
+{% block main %}
     <div class="row">
         <div class="col-md-6">
             <h3 class="text-center">Test col 6</h3>
+            {{ render_chart(chart) }}
         </div>
         <div class="col-md-6">
             <h3 class="text-center">Test col 6</h3>

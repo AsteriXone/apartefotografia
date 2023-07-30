@@ -18,6 +18,8 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 use App\Entity\User;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -34,7 +36,7 @@ class DashboardController extends AbstractDashboardController
         $sampleChart = [];
 
         return $this->render('admin/dashboard.html.twig', [
-            //'chart' => $this->createChart($sampleChart),
+            'chart' => $this->createChart($sampleChart),
         ]);
     }
 
@@ -155,5 +157,14 @@ class DashboardController extends AbstractDashboardController
         $assets->addWebpackEncoreEntry('admin');
 
         return $assets;
+    }
+
+    public function configureUserMenu(UserInterface $user): UserMenu
+    {
+        return parent::configureUserMenu($user)
+
+            ->addMenuItems([
+                MenuItem::linkToUrl('Ir a la web', 'fas fa-eye', $this->generateUrl('homepage'))
+            ]);
     }
 }

@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('@EasyAdmin/page/login.html.twig', [
+        return $this->render('login.html.twig', [
             // parameters usually defined in Symfony login forms
             'error' => $error,
             'last_username' => $lastUsername,
@@ -37,23 +37,23 @@ class SecurityController extends AbstractController
             // the title visible above the login form (define this option only if you are
             // rendering the login template in a regular Symfony controller; when rendering
             // it from an EasyAdmin Dashboard this is automatically set as the Dashboard title)
-            'page_title' => '<h1>Aparte Fotografía</h1>',
+            'page_title' => '<h1>Aparte Fotografía Login</h1>',
 
             // the string used to generate the CSRF token. If you don't define
             // this parameter, the login form won't include a CSRF token
             'csrf_token_intention' => 'authenticate',
 
             // the URL users are redirected to after the login (default: '/admin')
-            'target_path' => $this->generateUrl('admin'),
+            //'target_path' => '',
 
             // the label displayed for the username form field (the |trans filter is applied to it)
-            'username_label' => 'Your username',
+            'username_label' => 'Correo',
 
             // the label displayed for the password form field (the |trans filter is applied to it)
-            'password_label' => 'Your password',
+            'password_label' => 'Contraseña',
 
             // the label displayed for the Sign In form button (the |trans filter is applied to it)
-            'sign_in_label' => 'Log in',
+            'sign_in_label' => 'Acceder',
 
             // the 'name' HTML attribute of the <input> used for the username field (default: '_username')
             'username_parameter' => '_username',
@@ -80,7 +80,7 @@ class SecurityController extends AbstractController
             'remember_me_checked' => true,
 
             // the label displayed for the remember me checkbox (the |trans filter is applied to it)
-            'remember_me_label' => 'Remember me',
+            'remember_me_label' => 'Recordar',
         ]);
     }
 
