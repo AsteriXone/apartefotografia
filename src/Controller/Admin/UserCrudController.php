@@ -14,6 +14,7 @@ use Symfony\Component\Form\{FormBuilderInterface, FormEvent, FormEvents};
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
+use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 
 class UserCrudController extends AbstractCrudController
@@ -51,6 +52,8 @@ class UserCrudController extends AbstractCrudController
             ];
         } elseif(Crud::PAGE_DETAIL === $pageName) { // Ver
             $fields = [
+                UrlField::new('email', '')->setColumns('col-sm-6')
+                ->setTemplatePath('admin/field/url.html.twig'),
                 TextField::new('name', 'Nombre'),
                 TextField::new('surname_1', 'Apellido 1')->setColumns('col-sm-6'),
                 TextField::new('surname_2', 'Apellido 2')->setColumns('col-sm-6'),

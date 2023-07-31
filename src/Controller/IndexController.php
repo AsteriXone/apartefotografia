@@ -11,7 +11,7 @@ use Symfony\UX\Chartjs\Model\Chart;
 
 class IndexController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
+    #[Route('/', name: 'homepage') ]
     public function index(ChartBuilderInterface $chartBuilder): Response
     {
         $chart = $chartBuilder->createChart(Chart::TYPE_LINE);

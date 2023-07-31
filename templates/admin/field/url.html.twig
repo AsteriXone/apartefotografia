@@ -1,0 +1,16 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{# NOTE: the rel="noopener" attr is needed to avoid performance and security issues
+  (see https://web.dev/external-anchors-use-rel-noopener/) #}
+{% if app.user.email != field.value %}
+{% set testing = field.value %}
+  {% if ea.crud.currentAction == 'detail' %}
+      <a class="link-danger" target="_blank" rel="noopener" href="{{ url('homepage', {'_switch_user': field.value}) }}"><i class="bi bi-people-fill"></i> Entrar como {{ field.value }}</a>
+  {% else %}
+      <a target="_blank" rel="noopener" href="{{ field.value }}">{{ field.formattedValue }}</a>
+  {% endif %}
+
+{% else %}
+  Podrías entrar en un bucle infinito!
+{% endif %}
