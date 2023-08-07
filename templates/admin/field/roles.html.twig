@@ -4,9 +4,9 @@
 
 {% for rol in field.value %}
     {% if rol == 'ROLE_SUPER_ADMIN' %}
-        <span class="badge badge-danger">Admin</span>
+        <span class="badge badge-danger">Super Admin</span>
     {% elseif rol == 'ROLE_ADMIN' %}
-            <span class="badge badge-danger">Super Admin</span>
+            <span class="badge badge-danger">Admin</span>
     {% elseif rol == 'ROLE_ACADEMICA' %}
             <span class="badge badge-primary">Académico</span>
     {% elseif rol == 'ROLE_SOCIAL' %}

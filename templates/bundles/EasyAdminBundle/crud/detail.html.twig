@@ -1,13 +1,12 @@
 {% extends '@!EasyAdmin/crud/detail.html.twig' %}
 {# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
 {# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
-{% block content_title %}
-    {%- apply spaceless -%}
-        {% set custom_page_title = ea.crud.customPageTitle(pageName, entity ? entity.instance : null, ea.i18n.translationParameters) %}
-        {{ custom_page_title is null
-            ? ea.crud.defaultPageTitle(null, null, ea.i18n.translationParameters)|trans|raw
-            : custom_page_title|trans|raw }}
-    {%- endapply -%}
-    {{ dump(ea.entity.fqcn) }}
-    {{ dump(entity.instance.email) }}
+
+
+{% block login_as %}
+    {% if ('App\\Entity\\User' == ea.entity.fqcn) and (app.user.email != entity.instance.email) %}
+    <section class="content" style="padding-top: 5px">
+        <a href="{{ url('homepage', {'_switch_user': entity.instance.email}) }}" class="btn btn-warning"><i class="bi bi-person-bounding-box"></i> Entrar como usuario</a>
+    </section>  
+    {% endif %}
 {% endblock %}

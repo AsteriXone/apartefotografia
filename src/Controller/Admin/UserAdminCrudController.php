@@ -14,6 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
@@ -21,7 +22,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 
-class UserCrudController extends AbstractCrudController
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ArrayFilter;
+
+class UserAdminCrudController extends AbstractCrudController
 {
     public function __construct(
         public UserPasswordHasherInterface $userPasswordHasher
@@ -37,10 +41,10 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setPageTitle('index', '<i class="form-panel-icon fa fa-users"></i> Listado Usuarios')
+            ->setPageTitle('index', '<i class="form-panel-icon fa fa-shield-halved"></i> Listado Administradores')
             ->setPageTitle('new', fn () => 'Registrar Usuario')
-            ->setPageTitle('detail', fn (User $user) => sprintf('<i class="form-panel-icon fa fa-user"></i> %s', $user->getApellidos() . ', ' . $user->getName()))
-            ->setPageTitle('edit', fn (User $user) => sprintf('<i class="form-panel-icon fa fa-user"></i> %s', $user->getApellidos() . ', ' . $user->getName()))
+            ->setPageTitle('detail', fn (User $user) => sprintf('<i class="form-panel-icon fa fa-shield-halved"></i> %s', $user->getApellidos() . ', ' . $user->getName()))
+            ->setPageTitle('edit', fn (User $user) => sprintf('<i class="form-panel-icon fa fa-shield-halved"></i> %s', $user->getApellidos() . ', ' . $user->getName()))
         ;
     }
 
@@ -51,7 +55,7 @@ class UserCrudController extends AbstractCrudController
                 TextField::new('name', 'Nombre'),
                 TextField::new('apellidos', 'Apellidos'),
                 EmailField::new('email'),
-                ChoiceField::new('roles')
+                ArrayField::new('roles')
                     ->setTemplatePath('admin/field/roles.html.twig')
             ];
         } elseif(Crud::PAGE_DETAIL === $pageName) { // Ver
@@ -163,11 +167,35 @@ class UserCrudController extends AbstractCrudController
 
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
+        $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        // if user defined sort is not set
+        if (0 === count($searchDto->getSort())) {
+            $queryBuilder
+                ->addSelect('CONCAT(entity.surname_1, entity.surname_2) AS HIDDEN apellidos')
+                ->addOrderBy('apellidos', 'DESC');
+        }
         // SELECT * FROM `user` WHERE `roles` LIKE '%ROLE_ADMIN%' 
         return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters)
-            ->andWhere('entity.roles NOT LIKE :roles')
-            ->andWhere('entity.roles NOT LIKE :super_roles')
+            ->andWhere('(entity.roles LIKE :roles OR entity.roles LIKE :super_roles)')
             ->setParameter('roles', '%ROLE_ADMIN%')
-            ->setParameter('super_roles', '%ROLE_SUPER_ADMIN%');;
+            //->orWhere('entity.roles LIKE :super_roles')
+            ->setParameter('super_roles', '%ROLE_SUPER_ADMIN%');
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return parent::configureFilters($filters)
+            ->add('name')
+            ->add(ArrayFilter::new('roles')->setChoices([
+                'Super Admin' => 'ROLE_SUPER_ADMIN',
+                'Admin' => 'ROLE_ADMIN',
+                'Académico' => 'ROLE_ACADEMICA',
+                'Social' => 'ROLE_SOCIAL',
+            ])
+            ->canSelectMultiple(true)
+            //->renderExpanded(true)
+            )
+            
+            ;
     }
 }
