@@ -53,9 +53,12 @@ class UserAdminCrudController extends AbstractCrudController
         if (Crud::PAGE_INDEX === $pageName) { // Listado Usuarios
             $fields = [
                 TextField::new('name', 'Nombre'),
-                TextField::new('apellidos', 'Apellidos'),
+                TextField::new('surname_1', 'Apellidos')
+                    ->setSortable(true)
+                    ->setTemplatePath('admin/field/text_apellidos.html.twig'),
                 EmailField::new('email'),
                 ArrayField::new('roles')
+                    ->setSortable(false)
                     ->setTemplatePath('admin/field/roles.html.twig')
             ];
         } elseif(Crud::PAGE_DETAIL === $pageName) { // Ver
@@ -167,13 +170,24 @@ class UserAdminCrudController extends AbstractCrudController
 
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
-        $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        /* $queryBuilder = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
         // if user defined sort is not set
-        if (0 === count($searchDto->getSort())) {
+        dump($searchDto);
+        $sortField = $searchDto->getSort();
+        if (in_array('apellidos', array_keys($sortField))) {
+            $searchDto->customSort = ['surname_1' => 'ASC'];
             $queryBuilder
-                ->addSelect('CONCAT(entity.surname_1, entity.surname_2) AS HIDDEN apellidos')
-                ->addOrderBy('apellidos', 'DESC');
-        }
+                ->select('CONCAT(entity.surname_1, \' \', entity.surname_2) AS HIDDEN apellidos')
+                ->addOrderBy('apellidos', 'ASC')
+                ->andWhere('(entity.roles LIKE :roles OR entity.roles LIKE :super_roles)')
+                ->setParameter('roles', '%ROLE_ADMIN%')
+                ->setParameter('super_roles', '%ROLE_SUPER_ADMIN%');
+            
+            dump("aquí 2");
+            dump($queryBuilder);
+            return $queryBuilder;
+        } */
+        
         // SELECT * FROM `user` WHERE `roles` LIKE '%ROLE_ADMIN%' 
         return parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters)
             ->andWhere('(entity.roles LIKE :roles OR entity.roles LIKE :super_roles)')
@@ -189,8 +203,6 @@ class UserAdminCrudController extends AbstractCrudController
             ->add(ArrayFilter::new('roles')->setChoices([
                 'Super Admin' => 'ROLE_SUPER_ADMIN',
                 'Admin' => 'ROLE_ADMIN',
-                'Académico' => 'ROLE_ACADEMICA',
-                'Social' => 'ROLE_SOCIAL',
             ])
             ->canSelectMultiple(true)
             //->renderExpanded(true)

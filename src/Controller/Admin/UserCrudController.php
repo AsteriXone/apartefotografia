@@ -21,6 +21,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\ArrayFilter;
+
 class UserCrudController extends AbstractCrudController
 {
     public function __construct(
@@ -169,5 +172,18 @@ class UserCrudController extends AbstractCrudController
             ->andWhere('entity.roles NOT LIKE :super_roles')
             ->setParameter('roles', '%ROLE_ADMIN%')
             ->setParameter('super_roles', '%ROLE_SUPER_ADMIN%');;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return parent::configureFilters($filters)
+            ->add('name')
+            ->add(ArrayFilter::new('roles')->setChoices([
+                'Académico' => 'ROLE_ACADEMICA',
+                'Social' => 'ROLE_SOCIAL',
+                ])
+                ->canSelectMultiple(true)
+                //->renderExpanded(true)
+            );
     }
 }

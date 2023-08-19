@@ -1,0 +1,9 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{# {{ dump(entity.instance) }} #}
+{% if ea.crud.currentAction == 'detail' %}
+    <span title="{{ field.value }}">{{ field.formattedValue|raw|nl2br }} {{ entity.instance.surname2 }}</span>
+{% else %}
+    <span title="{{ field.value }}">{{ field.formattedValue|raw }} {{ entity.instance.surname2 }}</span>
+{% endif %}
