@@ -71,16 +71,16 @@ class SecurityController extends AbstractController
             //'forgot_password_label' => 'Forgot your password?',
 
             // whether to enable or not the "remember me" checkbox (default: false)
-            'remember_me_enabled' => true,
+            //'remember_me_enabled' => true,
 
             // remember me name form field (default: '_remember_me')
-            'remember_me_parameter' => '_remember_me',
+            //'remember_me_parameter' => '_remember_me',
 
             // whether to check by default the "remember me" checkbox (default: false)
-            'remember_me_checked' => true,
+            //'remember_me_checked' => true,
 
             // the label displayed for the remember me checkbox (the |trans filter is applied to it)
-            'remember_me_label' => 'Recordar',
+            //'remember_me_label' => 'Recordar',
         ]);
     }
 
