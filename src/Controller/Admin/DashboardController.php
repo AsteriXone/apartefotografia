@@ -56,7 +56,6 @@ class DashboardController extends AbstractDashboardController
             // set this option if you prefer the sidebar (which contains the main menu)
             // to be displayed as a narrow column instead of the default expanded design
             //->renderSidebarMinimized()
-
             ->setPaginatorPageSize(20)
             ->showEntityActionsInlined()
         ;
@@ -71,6 +70,13 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Usuarios', 'fa fa-users', User::class)
             ->setController(UserCrudController::class);
         
+        yield MenuItem::section('Carreras');
+        yield MenuItem::linkToCrud('Universidad', 'fa-solid fa-building-columns', University::class)
+            ->setController(UniversityCrudController::class);
+        yield MenuItem::linkToCrud('Especialidad', 'fa-solid fa-briefcase', Specialty::class)
+            ->setController(SpecialtyCrudController::class);
+        yield MenuItem::linkToCrud('Grupos', 'fa-solid fa-people-roof', Group::class)
+            ->setController(GroupCrudController::class);
     }
 
     public function configureActions(): Actions
